@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
+// import React, { Component } from "react";
 // import Nav from "./components/Nav";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";

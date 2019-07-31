@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { withRouter } from "react-router";
 import app from "../base.js";
+import "../App.css";
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
@@ -20,16 +21,26 @@ const SignUp = ({ history }) => {
   );
 
   return (
-    <div>
-      <h1>Sign up</h1>
-      <form onSubmit={handleSignUp}>
+    <div className="Signup container text-center m-5">
+      <h1 className=" mt-5 pt-5">Sign up</h1>
+      <form className="" onSubmit={handleSignUp}>
         <label>
-          Email
-          <input name="email" type="email" placeholder="Email" />
+          Email:
+          <input
+            className="Email ml-1 mb-5"
+            name="email"
+            type="email"
+            placeholder="Email"
+          />
         </label>
-        <label>
-          Password
-          <input name="password" type="password" placeholder="Password" />
+        <label className="ml-5">
+          Password:
+          <input
+            className=" ml-1"
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
         </label>
         <button type="submit">Sign Up</button>
       </form>
