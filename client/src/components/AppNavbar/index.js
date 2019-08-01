@@ -8,7 +8,8 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container
+  Container,
+  Button
 } from "reactstrap";
 
 class AppNavbar extends Component {
@@ -27,22 +28,29 @@ class AppNavbar extends Component {
       <div>
         <Navbar color="dark" dark expand="sm" className="mb-5">
           <Container>
-            <NavbarBrand href="/">Weight Tracker</NavbarBrand>
+            <NavbarBrand className="text-info" href="/">
+              Weight Tracker
+            </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink href="https://reactstrap.github.io/">
+                <NavItem className="mx-3">
+                  <NavLink
+                    className="text-info"
+                    href="https://reactstrap.github.io/"
+                  >
                     ReactStrap
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <button
-                    className="btn btn-secondary btn-sm"
+                  <Button
+                    outline
+                    color="warning"
+                    size="sm"
                     onClick={() => app.auth().signOut()}
                   >
                     Sign Out
-                  </button>
+                  </Button>
                 </NavItem>
               </Nav>
             </Collapse>
