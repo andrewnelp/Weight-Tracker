@@ -11,5 +11,6 @@ npm-debug.log*
 # testing
 /coverage
 
-**/client/.env
-/config/default.json
+client/.env
+
+config/default.json
