@@ -1,9 +1,8 @@
-// import Nav from "../components/Nav";
 import AppNavbar from "../components/AppNavbar";
 import React, { Component } from "react";
 import { Panel } from "../components/Panel";
 import { Rating } from "../components/Rating";
-import { Slider } from "primereact/slider";
+// import { Slider } from "primereact/slider";
 import { Button } from "reactstrap";
 
 class Home extends Component {
@@ -12,12 +11,9 @@ class Home extends Component {
   };
   render() {
     return (
-      <div className="App">
-        <div className="AppNavbar">
-          <AppNavbar />
-        </div>
-
-        <div className="container">
+      <div className="Home">
+        <AppNavbar />
+        <div className="container" style={{ marginTop: "5em", maxWidth: 1000 }}>
           <Panel
             header="Joke of a Day"
             style={{ marginTop: "2em" }}
@@ -50,10 +46,11 @@ class Home extends Component {
             respect, but given to ruthless violence whenever anything stands
             against the good of the family.
           </Panel>
-          <Slider
+          {/* <Slider
             value={this.state.value}
             onChange={e => this.setState({ value: e.value })}
-          />
+          /> */}
+          <br />
           <Button color="danger">Danger!</Button>
         </div>
       </div>

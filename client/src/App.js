@@ -1,6 +1,4 @@
 import React from "react";
-// import React, { Component } from "react";
-// import Nav from "./components/Nav";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -22,17 +20,5 @@ const App = () => {
     </AuthProvider>
   );
 };
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <div className="Nav">
-//           <Nav />
-//         </div>
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
