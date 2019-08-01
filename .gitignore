@@ -12,4 +12,4 @@ npm-debug.log*
 /coverage
 
 **/client/.env
-**/config/default.json
+/config/default.json
