@@ -1,7 +1,10 @@
-import Nav from "../components/Nav";
+// import Nav from "../components/Nav";
+import AppNavbar from "../components/AppNavbar";
 import React, { Component } from "react";
 import { Panel } from "../components/Panel";
 import { Rating } from "../components/Rating";
+import { Slider } from "primereact/slider";
+import { Button } from "reactstrap";
 
 class Home extends Component {
   state = {
@@ -9,12 +12,11 @@ class Home extends Component {
   };
   render() {
     return (
-      <div>
-        <div className="App">
-          <div className="Nav">
-            <Nav />
-          </div>
+      <div className="App">
+        <div className="AppNavbar">
+          <AppNavbar />
         </div>
+
         <div className="container">
           <Panel
             header="Joke of a Day"
@@ -48,6 +50,11 @@ class Home extends Component {
             respect, but given to ruthless violence whenever anything stands
             against the good of the family.
           </Panel>
+          <Slider
+            value={this.state.value}
+            onChange={e => this.setState({ value: e.value })}
+          />
+          <Button color="danger">Danger!</Button>
         </div>
       </div>
     );
