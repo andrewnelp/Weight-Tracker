@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 import { Rating } from "../Rating";
+import "primereact/resources/themes/nova-light/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 export default class CardUp extends Component {
   render() {
@@ -8,7 +11,9 @@ export default class CardUp extends Component {
       <div>
         <Card>
           <CardBody>
-            <CardTitle style={{ fontSize: 22 }}>{this.props.title}</CardTitle>
+            <CardTitle style={{ fontSize: 22 }}>
+              <strong>{this.props.title}</strong>
+            </CardTitle>
             <CardSubtitle>Weight: {this.props.weight}</CardSubtitle>
             <CardSubtitle>Steps: {this.props.steps}</CardSubtitle>
             <CardSubtitle>Fasting: {this.props.fasting}</CardSubtitle>

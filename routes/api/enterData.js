@@ -45,7 +45,8 @@ router
 //   activity,
 //   duration,
 //   feel,
-//   fasting
+//   fasting,
+//   diettype
 // });
 
 // newDayData
