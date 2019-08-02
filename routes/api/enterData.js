@@ -2,11 +2,11 @@ const router = require("express").Router();
 const dayDataController = require("../../controllers/dayDataController");
 let enterData = require("../../models");
 
-router.get("/add", (req, res) => res.send("Test route"));
-router.post("/add", (req, res) => {
-  console.log(req.body);
-  res.send("Test route");
-});
+// router.get("/add", (req, res) => res.send("Test route"));
+// router.post("/add", (req, res) => {
+//   console.log(req.body);
+//   res.send("Test route");
+// });
 
 // Matches with "/api/dayData"
 router
