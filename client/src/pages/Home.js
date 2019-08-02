@@ -1,23 +1,16 @@
 import AppNavbar from "../components/AppNavbar";
+import "../App.css";
+import CardUp from "../components/CardUp";
 import React, { Component } from "react";
 import { Panel } from "../components/Panel";
 import { Rating } from "../components/Rating";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle
-} from "reactstrap";
-// import { Slider } from "primereact/slider";
-import { Button } from "reactstrap";
 import axios from "axios";
 
 class Home extends Component {
   state = {
     panelCollapsed: true,
-    joke: ""
+    joke: "",
+    value: 3
   };
 
   componentDidMount() {
@@ -37,59 +30,36 @@ class Home extends Component {
   render() {
     const { joke } = this.state;
     return (
-      <div className="Home">
+      <div className="Home" style={{ fontFamily: "Roboto Slab" }}>
         <AppNavbar />
         <div className="container" style={{ marginTop: "5em", maxWidth: 1000 }}>
           <Panel
             header="Activities and Goals"
             style={{ marginTop: "2em" }}
             toggleable={true}
-            collapsed={this.state.panelCollapsed}
-            onToggle={e => this.setState({ panelCollapsed: e.value })}
           >
             <div className="row justify-content-around">
               <div className="col-4">
-                <Card>
-                  <CardImg
-                    style={{ width: 100 }}
-                    top
-                    src="https://ackersonfitness.com/wp-content/uploads/2019/05/barbell-biceps-black-841125-300x300.jpg"
-                    alt="Card image cap"
-                  />
-                  <CardBody>
-                    <CardTitle>Last Activity</CardTitle>
-                    <CardSubtitle>Weight: </CardSubtitle>
-                    <CardSubtitle>Steps: </CardSubtitle>
-                    <CardSubtitle>Fasting: </CardSubtitle>
-                    <CardSubtitle>Other Acivity: </CardSubtitle>
-                    <CardSubtitle> Feel: </CardSubtitle>
-                  </CardBody>
-                </Card>
+                <CardUp
+                  title={"Last Activity"}
+                  weight={190}
+                  steps={10000}
+                  fasting={16}
+                  other={45}
+                  feel={"Amazing"}
+                  value={this.state.value}
+                />
               </div>
               <div className="col-4">
-                <Card>
-                  <CardImg
-                    style={{ width: 100 }}
-                    top
-                    src="https://ackersonfitness.com/wp-content/uploads/2019/05/barbell-biceps-black-841125-300x300.jpg"
-                    alt="Card image cap"
-                  />
-                  <CardBody>
-                    <CardTitle>Goals</CardTitle>
-                    <CardSubtitle>Weight: </CardSubtitle>
-                    <CardSubtitle>Daily Steps: </CardSubtitle>
-                    <CardSubtitle>Daily Fasting: </CardSubtitle>
-                    <CardSubtitle>Other Acivity: </CardSubtitle>
-                    <CardSubtitle>
-                      Feel: {"Amazing "}
-                      <Rating
-                        value={5}
-                        onChange={e => this.setState({ value: e.value })}
-                        stars={5}
-                      />
-                    </CardSubtitle>
-                  </CardBody>
-                </Card>
+                <CardUp
+                  title={"Goals"}
+                  weight={190}
+                  steps={10000}
+                  fasting={16}
+                  other={45}
+                  feel={"Amazing"}
+                  value={5}
+                />
               </div>
             </div>
           </Panel>
@@ -126,8 +96,6 @@ class Home extends Component {
             value={this.state.value}
             onChange={e => this.setState({ value: e.value })}
           /> */}
-          <br />
-          <Button color="danger">Danger!</Button>
         </div>
       </div>
     );

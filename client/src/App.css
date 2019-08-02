@@ -1,12 +1,14 @@
-.App {
+.Home {
   text-align: center;
+  font-family: "Roboto Slab", serif;
+  background-color: rgb(238, 228, 229);
 }
 
 .Login {
   margin: 20 auto;
-  background-color: wheat;
+  background-color: rgb(238, 228, 229);
 }
 
 .Signup {
-  background-color: wheat;
+  background-color: rgb(238, 228, 229);
 }
