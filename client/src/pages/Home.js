@@ -2,10 +2,17 @@ import AppNavbar from "../components/AppNavbar";
 import React, { Component } from "react";
 import { Panel } from "../components/Panel";
 import { Rating } from "../components/Rating";
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle
+} from "reactstrap";
 // import { Slider } from "primereact/slider";
 import { Button } from "reactstrap";
 import axios from "axios";
-// import API2 from "../../utilsAPi/API2";
 
 class Home extends Component {
   state = {
@@ -33,6 +40,59 @@ class Home extends Component {
       <div className="Home">
         <AppNavbar />
         <div className="container" style={{ marginTop: "5em", maxWidth: 1000 }}>
+          <Panel
+            header="Activities and Goals"
+            style={{ marginTop: "2em" }}
+            toggleable={true}
+            collapsed={this.state.panelCollapsed}
+            onToggle={e => this.setState({ panelCollapsed: e.value })}
+          >
+            <div className="row justify-content-around">
+              <div className="col-4">
+                <Card>
+                  <CardImg
+                    style={{ width: 100 }}
+                    top
+                    src="https://ackersonfitness.com/wp-content/uploads/2019/05/barbell-biceps-black-841125-300x300.jpg"
+                    alt="Card image cap"
+                  />
+                  <CardBody>
+                    <CardTitle>Last Activity</CardTitle>
+                    <CardSubtitle>Weight: </CardSubtitle>
+                    <CardSubtitle>Steps: </CardSubtitle>
+                    <CardSubtitle>Fasting: </CardSubtitle>
+                    <CardSubtitle>Other Acivity: </CardSubtitle>
+                    <CardSubtitle> Feel: </CardSubtitle>
+                  </CardBody>
+                </Card>
+              </div>
+              <div className="col-4">
+                <Card>
+                  <CardImg
+                    style={{ width: 100 }}
+                    top
+                    src="https://ackersonfitness.com/wp-content/uploads/2019/05/barbell-biceps-black-841125-300x300.jpg"
+                    alt="Card image cap"
+                  />
+                  <CardBody>
+                    <CardTitle>Goals</CardTitle>
+                    <CardSubtitle>Weight: </CardSubtitle>
+                    <CardSubtitle>Daily Steps: </CardSubtitle>
+                    <CardSubtitle>Daily Fasting: </CardSubtitle>
+                    <CardSubtitle>Other Acivity: </CardSubtitle>
+                    <CardSubtitle>
+                      Feel: {"Amazing "}
+                      <Rating
+                        value={5}
+                        onChange={e => this.setState({ value: e.value })}
+                        stars={5}
+                      />
+                    </CardSubtitle>
+                  </CardBody>
+                </Card>
+              </div>
+            </div>
+          </Panel>
           <Panel
             header="Programming Joke of a Day"
             style={{ marginTop: "2em" }}
