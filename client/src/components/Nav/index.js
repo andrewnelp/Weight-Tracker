@@ -1,22 +1,40 @@
-import React from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import app from "../../base.js";
+import { Button } from "reactstrap";
 
-function Nav() {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
-      <a className="navbar-brand" href="/">
-        Weight Tracker
-      </a>
-      <div className="align-center">
-        <button
-          className="btn btn-secondary btn-sm"
-          onClick={() => app.auth().signOut()}
-        >
-          Sign Out
-        </button>
-      </div>
-    </nav>
-  );
+export default class Nav extends Component {
+  render() {
+    return (
+      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+        <Link to="/" className="navbar-brand">
+          Weight Tracker
+        </Link>
+        <div className="collpase navbar-collapse">
+          <ul className="navbar-nav mr-auto">
+            <li className="navbar-item">
+              <Link to="/" className="nav-link">
+                Home
+              </Link>
+            </li>
+            <li className="navbar-item">
+              <Link to="/create" className="nav-link">
+                Enter Day Data
+              </Link>
+            </li>
+            <li>
+              <Button
+                outline
+                color="warning"
+                size="sm"
+                onClick={() => app.auth().signOut()}
+              >
+                Sign Out
+              </Button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
+  }
 }
-
-export default Nav;
