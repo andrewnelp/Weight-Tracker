@@ -128,7 +128,7 @@ export class Panel extends Component {
       const toggleIcon = this.renderToggleIcon(collapsed);
 
       return (
-        <div className="p-panel-titlebar">
+        <div className="p-panel-titlebar text-info">
           <span className="p-panel-title">{this.props.header}</span>
           {toggleIcon}
         </div>

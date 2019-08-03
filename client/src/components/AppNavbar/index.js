@@ -5,7 +5,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
@@ -29,27 +28,21 @@ class AppNavbar extends Component {
       <div>
         <Navbar color="dark" dark expand="sm" className="mb-5">
           <Container>
-            <NavbarBrand className="text-info" href="#">
-              <Link to="/" className="navbar-brand">
-                Weight Tracker
-              </Link>
-            </NavbarBrand>
+            <Link to="/" className="navbar-brand text-info navbar-brand">
+              Weight Tracker
+            </Link>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem className="mx-3">
-                  <NavLink className="text-info" href="#">
-                    <Link to="/" className="nav-link">
-                      Home
-                    </Link>
-                  </NavLink>
+                  <Link to="/" className="nav-link text-info">
+                    Home
+                  </Link>
                 </NavItem>
                 <NavItem className="mx-3">
-                  <NavLink className="text-info" href="#">
-                    <Link to="/create" className="nav-link">
-                      Enter Day Data
-                    </Link>
-                  </NavLink>
+                  <Link to="/create" className="nav-link text-info">
+                    Enter Day Data
+                  </Link>
                 </NavItem>
                 <NavItem>
                   <NavLink className="text-info" href="#">

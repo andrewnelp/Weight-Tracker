@@ -1,30 +1,26 @@
 import React, { Component } from "react";
-// import AppNavbar from "../components/AppNavbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../App.css";
-// import Nav from "../components/Nav";
 import AppNavbar from "../components/AppNavbar";
 import ListData from "../components/ListData";
 import EditData from "../components/EditData";
 import CreateData from "../components/CreateData";
+import NotFound from "./NotFound";
 
 class Home extends Component {
   render() {
     return (
       <Router>
-        <AppNavbar />
-        <br />
-        <Route path="/" exact component={ListData} />
-        <Route path="/edit/:id" component={EditData} />
-        <Route path="/create" component={CreateData} />
+        <div>
+          <AppNavbar />
+          <Switch>
+            <Route path="/" exact component={ListData} />
+            <Route path="/edit/:id" component={EditData} />
+            <Route path="/create" component={CreateData} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
       </Router>
-      // <Router>
-      //   <Nav />
-      //   <br />
-      //   <Route path="/" exact component={ListData} />
-      //   <Route path="/edit/:id" component={EditData} />
-      //   <Route path="/create" component={CreateData} />
-      // </Router>
     );
   }
 }

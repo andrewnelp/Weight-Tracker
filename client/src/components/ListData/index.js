@@ -20,7 +20,7 @@ class List extends Component {
     feel: []
   };
 
-  componentDidMount() {
+  getJoke() {
     axios
       .get(
         "https://sv443.net/jokeapi/category/Programming?blacklistFlags=nsfw?type=single"
@@ -33,15 +33,18 @@ class List extends Component {
         console.log(error);
       });
   }
+  componentDidMount() {
+    this.getJoke();
+  }
 
   render() {
     const { joke } = this.state;
     return (
       <div className="Home">
-        <div className="container" style={{ marginTop: "2em", maxWidth: 1000 }}>
+        <div className="container">
           <Panel
             header="Activities and Goals"
-            style={{ marginTop: "2em" }}
+            // style={{ marginTop: "1em" }}
             toggleable={true}
           >
             <div className="row justify-content-around">
