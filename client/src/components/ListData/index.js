@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../App.css";
 import CardUp from "../CardUp";
 import Table from "../Table";
-
+import { Progress } from "reactstrap";
 import { Panel } from "../Panel";
 import axios from "axios";
 // import EditData from "../EditData";
@@ -12,10 +12,10 @@ class List extends Component {
   state = {
     panelCollapsed: true,
     joke: "",
-    value: [],
-    weight: [],
-    steps: [],
-    fasting: [],
+    value: 3,
+    weight: [190],
+    steps: [8000],
+    fasting: [14],
     other: [],
     feel: []
   };
@@ -63,7 +63,7 @@ class List extends Component {
               <div className="col-4">
                 <CardUp
                   title={"Goals"}
-                  weight={190}
+                  weight={180}
                   steps={10000}
                   fasting={16}
                   other={45}
@@ -71,6 +71,24 @@ class List extends Component {
                   value={5}
                 />
               </div>
+            </div>
+            <br />
+            <div>
+              <p> Weight </p>
+              <Progress value={(this.state.weight / 250) * 100}>
+                {(this.state.weight / 230) * 100}%
+              </Progress>
+              <br />
+              <p> Steps </p>
+              <Progress value={50}>1/2</Progress>
+              <br />
+              <p> Fasting </p>
+              <Progress value={75}>You're almost there!</Progress>
+              <br />
+              <Progress color="success" value="100">
+                You did it!
+              </Progress>
+              <br />
             </div>
           </Panel>
           <Panel
