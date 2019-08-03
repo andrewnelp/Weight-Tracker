@@ -14,7 +14,7 @@ export class Rating extends Component {
     disabled: false,
     readonly: false,
     stars: 5,
-    cancel: true,
+    cancel: false,
     style: null,
     className: null,
     tooltip: null,
