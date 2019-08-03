@@ -53,7 +53,8 @@ class List extends Component {
                   fasting={this.state.fasting}
                   other={this.state.other}
                   feel={""}
-                  value={this.state.value}
+                  // value={this.state.value}
+                  value={4}
                 />
               </div>
               <div className="col-4">
