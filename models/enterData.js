@@ -9,9 +9,9 @@ const enterDataSchema = new Schema(
     steps: { type: Number, required: true },
     activity: { type: String, default: "No Activity" },
     duration: { type: Number, default: 0 },
-    feel: { type: Number, default: 5 },
+    feel: { type: String, default: "Amazing" },
     fasting: { type: Number },
-    diettype: { type: String, default: "No Diet" }
+    diet: { type: String, default: "No Diet" }
   },
   { timestamps: true }
 );

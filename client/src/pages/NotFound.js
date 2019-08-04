@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-// import React, { Component } from "react";
 
 const NotFound = () => {
   return (

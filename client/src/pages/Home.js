@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AppNavbar from "../components/AppNavbar";
@@ -13,12 +13,9 @@ class Home extends Component {
       <Router>
         <div>
           <AppNavbar />
-          <Switch>
-            <Route path="/" exact component={ListData} />
-            <Route path="/edit/:id" component={EditData} />
-            <Route path="/create" component={CreateData} />
-            {/* <Route component={NotFound} /> */}
-          </Switch>
+          <Route path="/" exact component={ListData} />
+          <Route path="/edit/:id" component={EditData} />
+          <Route path="/create" component={CreateData} />
         </div>
       </Router>
     );
