@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "../../utilsAPi/API";
 import "../../App.css";
 import CardUp from "../CardUp";
 import Table from "../Table";
@@ -12,6 +13,7 @@ class List extends Component {
   state = {
     panelCollapsed: true,
     joke: "",
+    // dayDatas: "",
     value: 3
     // weight: [190],
     // steps: [8000],
@@ -35,7 +37,21 @@ class List extends Component {
   }
   componentDidMount() {
     this.getJoke();
+    API.getDatas()
+      // .then(response => console.log(response.data))
+      .then(response => {
+        this.setState({ dayDatas: response.data });
+        console.log(response.data);
+      })
+      .catch(err => console.log(err));
   }
+
+  deleteData = id => {
+    API.deleteData(id).then(res => console.log(res.data));
+    this.setState({
+      dayDatas: this.state.dayDatas.filter(el => el._id !== id)
+    });
+  };
 
   render() {
     const { joke } = this.state;
