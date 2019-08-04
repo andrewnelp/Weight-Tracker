@@ -12,12 +12,12 @@ class List extends Component {
   state = {
     panelCollapsed: true,
     joke: "",
-    value: 3,
-    weight: [190],
-    steps: [8000],
-    fasting: [14],
-    other: [],
-    feel: []
+    value: 3
+    // weight: [190],
+    // steps: [8000],
+    // fasting: [14],
+    // other: [],
+    // feel: []
   };
 
   getJoke() {
@@ -67,7 +67,7 @@ class List extends Component {
                   steps={10000}
                   fasting={16}
                   other={45}
-                  feel={"Amazing"}
+                  feel={""}
                   value={5}
                 />
               </div>
