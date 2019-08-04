@@ -1,26 +1,56 @@
 import React, { Component } from "react";
 import API from "../../utilsAPi/API";
+import { Link } from "react-router-dom";
 import "../../App.css";
 import CardUp from "../CardUp";
-import Table from "../Table";
+// import Table from "../Table";
 import { Progress } from "reactstrap";
 import { Panel } from "../Panel";
 import axios from "axios";
 // import EditData from "../EditData";
 // import CreateData from "../CreateData";
 
+const Day = props => (
+  <tr>
+    <td>{props.curDay.date.substring(0, 10)}</td>
+    <td>{props.curDay.weight}</td>
+    <td>{props.curDay.steps}</td>
+    <td>{props.curDay.activity}</td>
+    <td>{props.curDay.duration}</td>
+    <td>{props.curDay.feel}</td>
+    <td>{props.curDay.fasting}</td>
+    <td>{props.curDay.diet}</td>
+
+    <td>
+      <Link to={"/edit/" + props.curDay._id}>edit</Link> |{" "}
+      <a
+        href="#"
+        onClick={() => {
+          props.deleteData(props.curDay._id);
+        }}
+      >
+        delete
+      </a>
+    </td>
+  </tr>
+);
+
 class List extends Component {
-  state = {
-    panelCollapsed: true,
-    joke: "",
-    // dayDatas: "",
-    value: 3
-    // weight: [190],
-    // steps: [8000],
-    // fasting: [14],
-    // other: [],
-    // feel: []
-  };
+  constructor(props) {
+    super(props);
+    this.deleteData = this.deleteData.bind(this);
+    this.state = {
+      panelCollapsed: true,
+      joke: "",
+      dayDatas: [],
+      value: 3
+      // weight: [190],
+      // steps: [8000],
+      // fasting: [14],
+      // other: [],
+      // feel: []
+    };
+  }
 
   getJoke() {
     axios
@@ -46,12 +76,20 @@ class List extends Component {
       .catch(err => console.log(err));
   }
 
-  deleteData = id => {
+  deleteData(id) {
     API.deleteData(id).then(res => console.log(res.data));
     this.setState({
       dayDatas: this.state.dayDatas.filter(el => el._id !== id)
     });
-  };
+  }
+
+  dayDataList() {
+    return this.state.dayDatas.map(curDay => {
+      return (
+        <Day curDay={curDay} deleteData={this.deleteData} key={curDay._id} />
+      );
+    });
+  }
 
   render() {
     const { joke } = this.state;
@@ -118,7 +156,25 @@ class List extends Component {
           </Panel>
 
           <Panel header="Table" style={{ marginTop: "2em" }} toggleable={true}>
-            <Table />
+            <div>
+              <h3>Logged Day Activity</h3>
+              <table className="table">
+                <thead className="thead-light">
+                  <tr>
+                    <th>Date</th>
+                    <th>Weight</th>
+                    <th>Steps</th>
+                    <th>Activity</th>
+                    <th>Duration</th>
+                    <th>Feel</th>
+                    <th>Fasting Time</th>
+                    <th>Diet Type</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>{this.dayDataList()}</tbody>
+              </table>
+            </div>
           </Panel>
           <Panel header="Charts" style={{ marginTop: "2em" }} toggleable={true}>
             <h1>

@@ -4,7 +4,7 @@ import { Table } from "reactstrap";
 export default class Example extends React.Component {
   render() {
     return (
-      <Table>
+      <Table className="col-6 col-md-12">
         <thead>
           <tr>
             <th>Date</th>
@@ -18,16 +18,7 @@ export default class Example extends React.Component {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">Today</th>
-            <td>189</td>
-            <td>9999</td>
-            <td>Run</td>
-            <td>44</td>
-            <td>5</td>
-            <td>15</td>
-            <td>Keto</td>
-          </tr>
+          <tr>{this.dayDataList()}</tr>
         </tbody>
       </Table>
     );
