@@ -32,11 +32,11 @@ export default class CreateData extends React.Component {
       diet: this.state.diet
     };
     console.log(dayData);
-    // if (this.state.date && this.state.weight) {
-    API.saveData(dayData)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
-    // }
+    if (this.state.date && this.state.weight) {
+      API.saveData(dayData)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err));
+    }
 
     this.setState({
       date: "",
@@ -48,11 +48,8 @@ export default class CreateData extends React.Component {
       fasting: "",
       diet: ""
     });
-    //  axios.post('http://localhost:3000/api/enterData/', dayData)
-    //   .then(res => console.log(res.data));
     //  window.location = "/";
   };
-  // };
 
   handleInputChange = event => {
     const { name, value } = event.target;
