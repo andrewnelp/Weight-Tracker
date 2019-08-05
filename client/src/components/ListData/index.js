@@ -117,7 +117,7 @@ class List extends Component {
             toggleable={true}
           >
             <div className="row justify-content-around">
-              <div className="col-4">
+              <div className="col-3">
                 <CardUp
                   title={"Last Day"}
                   weight={this.state.weight}
@@ -125,16 +125,34 @@ class List extends Component {
                   fasting={this.state.fasting}
                   feel={this.state.feel}
                   value={4}
-                  colorWeight={this.state.weigh < 180 ? "green" : "red"}
-                  colorSteps={this.state.steps > 10000 ? "green" : "red"}
-                  colorFasting={this.state.fasting > 16 ? "green" : "red"}
-                  colorFeel={this.state.fasting === "Amazing" ? "green" : "red"}
+                  colorWeight={
+                    this.state.weight < 180 ? "rgb(40,167,69)" : "red"
+                  }
+                  colorSteps={
+                    this.state.steps > 10000 ? "rgb(40,167,69)" : "red"
+                  }
+                  colorFasting={
+                    this.state.fasting > 16 ? "rgb(40,167,69)" : "red"
+                  }
+                  colorFeel={
+                    this.state.fasting === "Amazing" ? "rgb(40,167,69)" : "red"
+                  }
                 />
               </div>
-              <div className="col-4">
+              <div className="col-3">
                 <CardUp
                   title={"Goals"}
-                  weight={180}
+                  weight={190}
+                  steps={10000}
+                  fasting={16}
+                  feel="Amazing"
+                  value={5}
+                />
+              </div>
+              <div className="col-3">
+                <CardUp
+                  title={"Best"}
+                  weight={190}
                   steps={10000}
                   fasting={16}
                   feel="Amazing"
@@ -143,22 +161,33 @@ class List extends Component {
               </div>
             </div>
             <br />
-            <div>
-              <p> Weight </p>
-              <Progress value={(this.state.weight / 250) * 100}>
-                {(this.state.weight / 230) * 100}%
-              </Progress>
-              <br />
-              <p> Steps </p>
-              <Progress value={50}>1/2</Progress>
-              <br />
-              <p> Fasting </p>
-              <Progress value={75}>You're almost there!</Progress>
-              <br />
-              <Progress color="success" value="100">
-                You did it!
-              </Progress>
-              <br />
+            <div className="row justify-content-center">
+              <div className="col-8 text-center">
+                <p style={{ fontSize: 22 }}> Weight </p>
+                <Progress
+                  value={(190 / this.state.weight) * 100}
+                  color={this.state.weight < 190 ? "success" : "secondary"}
+                >
+                  {Math.round((190 / this.state.weight) * 100)}%
+                </Progress>
+                <br />
+                <p style={{ fontSize: 22 }}> Steps </p>
+                <Progress
+                  value={(this.state.steps / 10000) * 100}
+                  color={this.state.steps > 10000 ? "success" : "secondary"}
+                >
+                  {Math.round((this.state.steps / 10000) * 100)}%
+                </Progress>
+                <br />
+                <p style={{ fontSize: 22 }}> Fasting </p>
+                <Progress
+                  value={(this.state.fasting / 16) * 100}
+                  color={this.state.fasting > 16 ? "success" : "secondary"}
+                >
+                  {Math.round((this.state.fasting / 16) * 100)}%
+                </Progress>
+                <br />
+              </div>
             </div>
           </Panel>
           <Panel
