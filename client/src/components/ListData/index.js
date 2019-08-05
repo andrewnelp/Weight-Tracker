@@ -71,16 +71,13 @@ class List extends Component {
         this.setState({
           dayDatas: response.data
         });
-        // let weight = response.data.slice(-1).pop().weight;
-        let weight = response.data[0].weight;
-        let steps = response.data[0].steps;
-        let fasting = response.data[0].fasting;
-        let feel = response.data[0].feel;
+        let { weight, steps, fasting, feel } = response.data[0];
+
         this.setState({
           weight: weight,
           steps: steps,
-          feel: feel,
-          fasting: fasting
+          fasting: fasting,
+          feel: feel
         });
       })
       .catch(err => console.log(err));
@@ -96,6 +93,7 @@ class List extends Component {
     this.setState({
       dayDatas: this.state.dayDatas.filter(el => el._id !== id)
     });
+    this.loadData();
   }
 
   dayDataList() {
@@ -124,15 +122,15 @@ class List extends Component {
                   steps={this.state.steps}
                   fasting={this.state.fasting}
                   feel={this.state.feel}
-                  value={4}
+                  value={5}
                   colorWeight={
-                    this.state.weight < 180 ? "rgb(40,167,69)" : "red"
+                    this.state.weight < 190 ? "rgb(40,167,69)" : "red"
                   }
                   colorSteps={
-                    this.state.steps > 10000 ? "rgb(40,167,69)" : "red"
+                    this.state.steps > 9990 ? "rgb(40,167,69)" : "red"
                   }
                   colorFasting={
-                    this.state.fasting > 16 ? "rgb(40,167,69)" : "red"
+                    this.state.fasting > 15 ? "rgb(40,167,69)" : "red"
                   }
                   colorFeel={
                     this.state.fasting === "Amazing" ? "rgb(40,167,69)" : "red"
