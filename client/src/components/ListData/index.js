@@ -43,12 +43,11 @@ class List extends Component {
       panelCollapsed: true,
       joke: "",
       dayDatas: [],
-      value: 3
-      // weight: [190],
-      // steps: [8000],
-      // fasting: [14],
-      // other: [],
-      // feel: []
+      value: 1,
+      weight: [],
+      steps: [],
+      fasting: [],
+      feel: []
     };
   }
 
@@ -65,15 +64,31 @@ class List extends Component {
         console.log(error);
       });
   }
-  componentDidMount() {
-    this.getJoke();
+
+  loadData() {
     API.getDatas()
-      // .then(response => console.log(response.data))
       .then(response => {
-        this.setState({ dayDatas: response.data });
-        console.log(response.data);
+        this.setState({
+          dayDatas: response.data
+        });
+        // let weight = response.data.slice(-1).pop().weight;
+        let weight = response.data[0].weight;
+        let steps = response.data[0].steps;
+        let fasting = response.data[0].fasting;
+        let feel = response.data[0].feel;
+        this.setState({
+          weight: weight,
+          steps: steps,
+          feel: feel,
+          fasting: fasting
+        });
       })
       .catch(err => console.log(err));
+  }
+
+  componentDidMount() {
+    this.getJoke();
+    this.loadData();
   }
 
   deleteData(id) {
@@ -104,14 +119,16 @@ class List extends Component {
             <div className="row justify-content-around">
               <div className="col-4">
                 <CardUp
-                  title={"Last Activity"}
+                  title={"Last Day"}
                   weight={this.state.weight}
                   steps={this.state.steps}
                   fasting={this.state.fasting}
-                  other={this.state.other}
-                  feel={""}
-                  // value={this.state.value}
+                  feel={this.state.feel}
                   value={4}
+                  colorWeight={this.state.weigh < 180 ? "green" : "red"}
+                  colorSteps={this.state.steps > 10000 ? "green" : "red"}
+                  colorFasting={this.state.fasting > 16 ? "green" : "red"}
+                  colorFeel={this.state.fasting === "Amazing" ? "green" : "red"}
                 />
               </div>
               <div className="col-4">
@@ -120,8 +137,7 @@ class List extends Component {
                   weight={180}
                   steps={10000}
                   fasting={16}
-                  other={45}
-                  feel={""}
+                  feel="Amazing"
                   value={5}
                 />
               </div>
@@ -152,14 +168,22 @@ class List extends Component {
             collapsed={this.state.panelCollapsed}
             onToggle={e => this.setState({ panelCollapsed: e.value })}
           >
-            <p style={{ fontSize: 20 }}>{joke}</p>
+            <p className="Joke" style={{ fontSize: 20 }}>
+              {joke}
+            </p>
           </Panel>
 
-          <Panel header="Table" style={{ marginTop: "2em" }} toggleable={true}>
+          <Panel
+            header="Logged Day Activity"
+            style={{ marginTop: "2em" }}
+            toggleable={true}
+          >
             <div>
-              <h3>Logged Day Activity</h3>
-              <table className="table">
-                <thead className="thead-light">
+              <table className="table shadow-lg p-3 mb-5 bg-white rounded mt-3">
+                <thead
+                  className="thead-info"
+                  // style={{ backgroundColor: "light-gray" }}
+                >
                   <tr>
                     <th>Date</th>
                     <th>Weight</th>
