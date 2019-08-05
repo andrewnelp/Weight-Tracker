@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../../App.css";
 import CardUp from "../CardUp";
 // import Table from "../Table";
-import { Progress } from "reactstrap";
+import { Progress, Button } from "reactstrap";
 import { Panel } from "../Panel";
 import axios from "axios";
 // import EditData from "../EditData";
@@ -22,15 +22,18 @@ const Day = props => (
     <td>{props.curDay.diet}</td>
 
     <td>
-      <Link to={"/edit/" + props.curDay._id}>edit</Link> |{" "}
-      <a
-        href="#"
+      <Button className="btn btn-info btn-sm" to={"/edit/" + props.curDay._id}>
+        <i class="far fa-edit" />
+      </Button>{" "}
+      <Button
+        className="btn btn-secondary btn-sm"
+        // href="#"
         onClick={() => {
           props.deleteData(props.curDay._id);
         }}
       >
-        delete
-      </a>
+        <i class="far fa-trash-alt" />
+      </Button>
     </td>
   </tr>
 );
