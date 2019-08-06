@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import "react-datepicker/dist/react-datepicker.css";
-// import axios from "axios";
+import axios from "axios";
 
 export default class CreateData extends React.Component {
   state = {
@@ -55,20 +55,19 @@ export default class CreateData extends React.Component {
       diet: this.state.diet
     };
     // console.log(dayData);
-
-    API.updateData(this.props.match.params.id)
+    API.updateData(this.props.match.params.id, dayData)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
 
     // axios
-    //   .post(
+    //   .put(
     //     "http://localhost:3000/api/enterData/" + this.props.match.params.id,
     //     dayData
     //   )
-    // .then(res => console.log(res.data));
+    //   .then(res => console.log(res.data));
 
     console.log(this.props.match.params.id);
-    console.log(dayData.activity);
+    console.log(dayData);
 
     //  window.location = "/";
 

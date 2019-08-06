@@ -74,17 +74,17 @@ class List extends Component {
         });
       })
       .catch(err => console.log(err));
-    console.log(dateArr);
-    console.log(stepsArr);
+    // (function() {
     this.setState({
       chartData: {
-        labels: dateArr.reverse(),
+        labels: dateArr,
         datasets: [
           {
             label: "Weight",
-            data: weightArr.reverse(),
+            data: weightArr,
             backgroundColor: [
-              "rgba(255, 99, 132, 0.6)"
+              // "rgba(255, 99, 132, 0.6)"
+              "rgb(23,162,184)"
               // "rgba(54, 162, 235, 0.6)",
               // "rgba(255, 206, 86, 0.6)",
               // "rgba(75, 192, 192, 0.6)",
@@ -96,6 +96,7 @@ class List extends Component {
         ]
       }
     });
+    // });
   }
 
   getJoke() {
