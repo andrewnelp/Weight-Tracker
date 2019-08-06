@@ -3,12 +3,10 @@ import API from "../../utilsAPi/API";
 import { Link } from "react-router-dom";
 import "../../App.css";
 import CardUp from "../CardUp";
-// import Table from "../Table";
 import { Progress, Button } from "reactstrap";
 import { Panel } from "../Panel";
 import axios from "axios";
-// import EditData from "../EditData";
-// import CreateData from "../CreateData";
+import Chart from "../Chart";
 
 const Day = props => (
   <tr>
@@ -50,8 +48,54 @@ class List extends Component {
       weight: [],
       steps: [],
       fasting: [],
-      feel: []
+      feel: [],
+      chartData: {}
     };
+  }
+  componentWillMount() {
+    this.getChartData();
+  }
+
+  getChartData() {
+    let stepsArr = [];
+    let weightArr = [];
+    let fastingArr = [];
+    let dateArr = [];
+    // let dateArrRev = dateArr.reverse();
+    // let weightArrRev = weightArr.reverse();
+    // Ajax calls here
+    API.getDatas()
+      .then(response => {
+        response.data.forEach(w => {
+          stepsArr.unshift(w.steps);
+          weightArr.unshift(w.weight);
+          fastingArr.unshift(w.fasting);
+          dateArr.unshift(w.date.substring(0, 10));
+        });
+      })
+      .catch(err => console.log(err));
+    console.log(dateArr);
+    console.log(stepsArr);
+    this.setState({
+      chartData: {
+        labels: dateArr.reverse(),
+        datasets: [
+          {
+            label: "Weight",
+            data: weightArr.reverse(),
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.6)"
+              // "rgba(54, 162, 235, 0.6)",
+              // "rgba(255, 206, 86, 0.6)",
+              // "rgba(75, 192, 192, 0.6)",
+              // "rgba(153, 102, 255, 0.6)",
+              // "rgba(255, 159, 64, 0.6)",
+              // "rgba(255, 99, 132, 0.6)"
+            ]
+          }
+        ]
+      }
+    });
   }
 
   getJoke() {
@@ -68,19 +112,22 @@ class List extends Component {
   }
 
   loadData() {
+    let stepsArr = [];
+    let weightArr = [];
+    let fastingArr = [];
+    let dateArr = [];
     API.getDatas()
       .then(response => {
         this.setState({
           dayDatas: response.data
         });
         let { weight, steps, fasting, feel } = response.data[0];
-        let stepsArr = [];
-        let weightArr = [];
-        let fastingArr = [];
+
         response.data.forEach(w => {
           stepsArr.push(w.steps);
           weightArr.push(w.weight);
           fastingArr.push(w.fasting);
+          dateArr.push(w.date.substring(0, 10));
         });
         let stepsMax = Math.max(...stepsArr);
         let weightMin = Math.min(...weightArr);
@@ -99,6 +146,26 @@ class List extends Component {
         });
       })
       .catch(err => console.log(err));
+    // this.setState({
+    //   chartData: {
+    //     labels: [1, 2, 3, 4, 5],
+    //     datasets: [
+    //       {
+    //         label: "Weight",
+    //         data: [1, 2, 3, 4, 5]
+    //         // backgroundColor: [
+    //         //   "rgba(255, 99, 132, 0.6)",
+    //         //   "rgba(54, 162, 235, 0.6)",
+    //         //   "rgba(255, 206, 86, 0.6)",
+    //         //   "rgba(75, 192, 192, 0.6)",
+    //         //   "rgba(153, 102, 255, 0.6)",
+    //         //   // "rgba(255, 159, 64, 0.6)",
+    //         //   // "rgba(255, 99, 132, 0.6)"
+    //         // ]
+    //       }
+    //     ]
+    //   }
+    // });
   }
 
   componentDidMount() {
@@ -246,9 +313,11 @@ class List extends Component {
             </div>
           </Panel>
           <Panel header="Charts" style={{ marginTop: "2em" }} toggleable={true}>
-            <h1>
-              Charts<span className="badge badge-secondary">New</span>
-            </h1>
+            <Chart
+              chartData={this.state.chartData}
+              location="Massachusetts"
+              legendPosition="bottom"
+            />
           </Panel>
         </div>
       </div>

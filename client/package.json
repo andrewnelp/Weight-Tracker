@@ -6,6 +6,8 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "chart.js": "^2.8.0",
+    "chartjs": "^0.3.24",
     "classnames": "^2.2.6",
     "cors": "^2.8.5",
     "firebase": "^6.3.3",
@@ -14,6 +16,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.6.3",
     "react-bootstrap": "^1.0.0-beta.10",
+    "react-chartjs-2": "^2.7.6",
     "react-datepicker": "^2.8.0",
     "react-dom": "^16.6.3",
     "react-router": "^5.0.1",

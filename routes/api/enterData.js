@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const dayDataController = require("../../controllers/dayDataController");
-let enterData = require("../../models");
 
 // Matches with "/api/enterData"
 router
