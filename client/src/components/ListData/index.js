@@ -22,9 +22,9 @@ const Day = props => (
     <td>{props.curDay.diet}</td>
 
     <td>
-      <Button className="btn btn-info btn-sm" to={"/edit/" + props.curDay._id}>
-        <i class="far fa-edit" />
-      </Button>{" "}
+      <Link className="btn btn-info btn-sm" to={"/edit/" + props.curDay._id}>
+        <i className="far fa-edit" />
+      </Link>{" "}
       <Button
         className="btn btn-secondary btn-sm"
         // href="#"
@@ -32,7 +32,7 @@ const Day = props => (
           props.deleteData(props.curDay._id);
         }}
       >
-        <i class="far fa-trash-alt" />
+        <i className="far fa-trash-alt" />
       </Button>
     </td>
   </tr>
@@ -61,7 +61,6 @@ class List extends Component {
       )
       .then(response => {
         this.setState({ joke: response.data.joke });
-        console.log(response.data.joke);
       })
       .catch(error => {
         console.log(error);
@@ -75,12 +74,28 @@ class List extends Component {
           dayDatas: response.data
         });
         let { weight, steps, fasting, feel } = response.data[0];
+        let stepsArr = [];
+        let weightArr = [];
+        let fastingArr = [];
+        response.data.forEach(w => {
+          stepsArr.push(w.steps);
+          weightArr.push(w.weight);
+          fastingArr.push(w.fasting);
+        });
+        let stepsMax = Math.max(...stepsArr);
+        let weightMin = Math.min(...weightArr);
+        let fastingMax = Math.max(...fastingArr);
+        // console.log(stepsArr);
+        // console.log(stepsMax);
 
         this.setState({
           weight: weight,
           steps: steps,
           fasting: fasting,
-          feel: feel
+          feel: feel,
+          stepsMax: stepsMax,
+          weightMin: weightMin,
+          fastingMax: fastingMax
         });
       })
       .catch(err => console.log(err));
@@ -153,9 +168,9 @@ class List extends Component {
               <div className="col-3">
                 <CardUp
                   title={"Best"}
-                  weight={190}
-                  steps={10000}
-                  fasting={16}
+                  weight={this.state.weightMin}
+                  steps={this.state.stepsMax}
+                  fasting={this.state.fastingMax}
                   feel="Amazing"
                   value={5}
                 />
