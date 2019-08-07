@@ -22,7 +22,7 @@ const SignUp = ({ history }) => {
 
   return (
     <div className="Signup container text-center m-5">
-      <h1 className=" mt-5 pt-5">Sign up</h1>
+      <h1 className=" mt-5 pt-5">Sign Up</h1>
       <form className="" onSubmit={handleSignUp}>
         <label>
           Email:

@@ -48,7 +48,12 @@ export default class CreateData extends React.Component {
       diet: this.state.diet
     };
     console.log(dayData);
-    if (this.state.date && this.state.weight) {
+    let regex = /^[a-zA-Z]+$/;
+    if (this.state.weight.length <= 2 || this.state.weight.match(regex)) {
+      alert("Enter Your Weight Correctly in Numbers");
+    } else if (this.state.steps.length < 4 || this.state.steps.match(regex)) {
+      alert("Steps should be more than 4 digits and in numbers");
+    } else {
       API.saveData(dayData)
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
@@ -168,7 +173,7 @@ export default class CreateData extends React.Component {
               type="text"
               name="feel"
               id="feel"
-              placeholder="Enter Your Weight"
+              placeholder="How did you feel today?"
               value={this.state.feel}
               onChange={this.handleInputChange}
             />
@@ -206,7 +211,7 @@ export default class CreateData extends React.Component {
           </Popover>
           <Button
             id="Popover1"
-            disabled={!(this.state.date && this.state.weight)}
+            disabled={!this.state.weight}
             onClick={this.onSubmit}
           >
             Add Data!

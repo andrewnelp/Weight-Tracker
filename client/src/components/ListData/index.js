@@ -80,7 +80,8 @@ class List extends Component {
           {
             label: "Weight",
             data: weightArr,
-            backgroundColor: ["rgb(23,162,184)"]
+            backgroundColor: ["rgb(23,162,184)"],
+            borderWidth: 2
           }
         ]
       }
