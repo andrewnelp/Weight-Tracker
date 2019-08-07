@@ -3,9 +3,17 @@ import { Link } from "react-router-dom";
 import API from "../../utilsAPi/API";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Popover,
+  PopoverHeader,
+  PopoverBody
+} from "reactstrap";
 import "react-datepicker/dist/react-datepicker.css";
-import { Messages } from "primereact/messages";
 
 export default class CreateData extends React.Component {
   state = {
@@ -17,6 +25,13 @@ export default class CreateData extends React.Component {
     feel: "Amazing",
     fasting: 0,
     diet: "16 hour fasting"
+  };
+
+  // popover toggle
+  toggle = () => {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    });
   };
 
   onSubmit = e => {
@@ -180,28 +195,25 @@ export default class CreateData extends React.Component {
               onChange={this.handleInputChange}
             />
           </FormGroup>
-          <Messages ref={el => (this.messages = el)} />
+          <Popover
+            placement="bottom"
+            isOpen={this.state.popoverOpen}
+            target="Popover1"
+            toggle={this.toggle}
+          >
+            <PopoverHeader>Day Data Added!</PopoverHeader>
+            <PopoverBody>Enjoy!</PopoverBody>
+          </Popover>
           <Button
+            id="Popover1"
             disabled={!(this.state.date && this.state.weight)}
             onClick={this.onSubmit}
-            // onClick={this.showSuccess}
-            // label="Success"
-            // className="p-button-success"
           >
             Add Data!
           </Button>
           <Link style={{ marginLeft: 100 }} to="/">
             ← Back to Home
           </Link>
-
-          {/* <Button
-            onClick={this.showSuccess}
-            label="Success"
-            className="p-button-success"
-          >
-            {" "}
-            Hello{" "}
-          </Button> */}
         </Form>
       </div>
     );
