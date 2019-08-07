@@ -6,11 +6,13 @@
 
 .Login {
   margin: 20 auto;
-  background-color: rgb(238, 228, 229);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* background-color: rgb(238, 228, 229); */
 }
 
 .Signup {
-  background-color: rgb(238, 228, 229);
+  /* background-color: rgb(238, 228, 229); */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .table {

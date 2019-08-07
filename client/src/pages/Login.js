@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../base.js";
 import { AuthContext } from "../Auth.js";
+import Jumbotron from "../components/Jumbotron";
 import "../App.css";
 
 const Login = ({ history }) => {
@@ -29,6 +30,9 @@ const Login = ({ history }) => {
 
   return (
     <div className="Login container text-center">
+      <Jumbotron>
+        <h2>Write, Think, Trust Yourself</h2>
+      </Jumbotron>
       <h1 className=" mt-5 pt-5">Log in</h1>
       <form onSubmit={handleLogin}>
         <label className="Email m-5">

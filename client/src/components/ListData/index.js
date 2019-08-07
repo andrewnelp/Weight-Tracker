@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utilsAPi/API";
 import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../../App.css";
 import CardUp from "../CardUp";
 import { Progress, Button } from "reactstrap";
@@ -25,7 +26,6 @@ const Day = props => (
       </Link>{" "}
       <Button
         className="btn btn-secondary btn-sm"
-        // href="#"
         onClick={() => {
           props.deleteData(props.curDay._id);
         }}
@@ -52,17 +52,16 @@ class List extends Component {
       chartData: {}
     };
   }
-  componentWillMount() {
+  componentWillMount = () => {
     this.getChartData();
-  }
+  };
 
   getChartData() {
     let stepsArr = [];
     let weightArr = [];
     let fastingArr = [];
     let dateArr = [];
-    // let dateArrRev = dateArr.reverse();
-    // let weightArrRev = weightArr.reverse();
+
     // Ajax calls here
     API.getDatas()
       .then(response => {
@@ -74,7 +73,6 @@ class List extends Component {
         });
       })
       .catch(err => console.log(err));
-    // (function() {
     this.setState({
       chartData: {
         labels: dateArr,
@@ -82,21 +80,11 @@ class List extends Component {
           {
             label: "Weight",
             data: weightArr,
-            backgroundColor: [
-              // "rgba(255, 99, 132, 0.6)"
-              "rgb(23,162,184)"
-              // "rgba(54, 162, 235, 0.6)",
-              // "rgba(255, 206, 86, 0.6)",
-              // "rgba(75, 192, 192, 0.6)",
-              // "rgba(153, 102, 255, 0.6)",
-              // "rgba(255, 159, 64, 0.6)",
-              // "rgba(255, 99, 132, 0.6)"
-            ]
+            backgroundColor: ["rgb(23,162,184)"]
           }
         ]
       }
     });
-    // });
   }
 
   getJoke() {
@@ -133,8 +121,6 @@ class List extends Component {
         let stepsMax = Math.max(...stepsArr);
         let weightMin = Math.min(...weightArr);
         let fastingMax = Math.max(...fastingArr);
-        // console.log(stepsArr);
-        // console.log(stepsMax);
 
         this.setState({
           weight: weight,
@@ -147,26 +133,6 @@ class List extends Component {
         });
       })
       .catch(err => console.log(err));
-    // this.setState({
-    //   chartData: {
-    //     labels: [1, 2, 3, 4, 5],
-    //     datasets: [
-    //       {
-    //         label: "Weight",
-    //         data: [1, 2, 3, 4, 5]
-    //         // backgroundColor: [
-    //         //   "rgba(255, 99, 132, 0.6)",
-    //         //   "rgba(54, 162, 235, 0.6)",
-    //         //   "rgba(255, 206, 86, 0.6)",
-    //         //   "rgba(75, 192, 192, 0.6)",
-    //         //   "rgba(153, 102, 255, 0.6)",
-    //         //   // "rgba(255, 159, 64, 0.6)",
-    //         //   // "rgba(255, 99, 132, 0.6)"
-    //         // ]
-    //       }
-    //     ]
-    //   }
-    // });
   }
 
   componentDidMount() {
@@ -291,6 +257,7 @@ class List extends Component {
             style={{ marginTop: "2em" }}
             toggleable={true}
           >
+            {/* <div className="row justify-content-center"> */}
             <div>
               <table className="table shadow-lg p-3 mb-5 bg-white rounded mt-3">
                 <thead
@@ -312,8 +279,14 @@ class List extends Component {
                 <tbody>{this.dayDataList()}</tbody>
               </table>
             </div>
+            {/* </div> */}
           </Panel>
-          <Panel header="Charts" style={{ marginTop: "2em" }} toggleable={true}>
+          <Panel
+            header="Charts"
+            style={{ marginTop: "2em" }}
+            toggleable={true}
+            className="mb-5"
+          >
             <Chart
               chartData={this.state.chartData}
               location="Massachusetts"

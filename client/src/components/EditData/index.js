@@ -13,7 +13,7 @@ import {
   PopoverHeader,
   PopoverBody
 } from "reactstrap";
-import "react-datepicker/dist/react-datepicker.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class CreateData extends React.Component {
   state = {
@@ -94,7 +94,7 @@ export default class CreateData extends React.Component {
     return (
       <div className="container" style={{ maxWidth: 900 }}>
         <h3>Edit Day Data</h3>
-        <Form onSubmit={this.onSubmit}>
+        <Form onSubmit={this.onSubmit} className="mb-5">
           <FormGroup>
             <label>Date: </label>
             <div>
