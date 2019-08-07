@@ -19,7 +19,7 @@ export default {
   },
   // Saves a Day Activity to the database
   updateData: function(id, data) {
-    console.log("/api/enterData/" + id);
+    console.log(data);
     return axios.put("/api/enterData/" + id, data);
   }
 };

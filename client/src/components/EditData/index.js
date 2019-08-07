@@ -3,9 +3,18 @@ import { Link } from "react-router-dom";
 import API from "../../utilsAPi/API";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Popover,
+  PopoverHeader,
+  PopoverBody
+} from "reactstrap";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
+import { Messages } from "primereact/messages";
 
 export default class CreateData extends React.Component {
   state = {
@@ -16,7 +25,14 @@ export default class CreateData extends React.Component {
     duration: 0,
     feel: "Amazing",
     fasting: 0,
-    diet: "16 hour fasting"
+    diet: "16 hour fasting",
+    popoverOpen: false
+  };
+
+  toggle = () => {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    });
   };
 
   componentDidMount() {
@@ -54,34 +70,12 @@ export default class CreateData extends React.Component {
       fasting: this.state.fasting,
       diet: this.state.diet
     };
-    // console.log(dayData);
+
     API.updateData(this.props.match.params.id, dayData)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
 
-    // axios
-    //   .put(
-    //     "http://localhost:3000/api/enterData/" + this.props.match.params.id,
-    //     dayData
-    //   )
-    //   .then(res => console.log(res.data));
-
-    console.log(this.props.match.params.id);
-    console.log(dayData);
-
-    //  window.location = "/";
-
-    // this.setState({
-    //   date: "",
-    //   weight: "",
-    //   steps: "",
-    //   activity: "",
-    //   duration: "",
-    //   feel: "",
-    //   fasting: "",
-    //   diet: ""
-    // });
-    //  window.location = "/";
+    // window.location = "/";
   };
 
   handleInputChange = event => {
@@ -205,17 +199,34 @@ export default class CreateData extends React.Component {
               onChange={this.handleInputChange}
             />
           </FormGroup>
-
+          <Popover
+            placement="bottom"
+            isOpen={this.state.popoverOpen}
+            target="Popover1"
+            toggle={this.toggle}
+          >
+            <PopoverHeader>Data Edited!</PopoverHeader>
+            <PopoverBody>Thanks</PopoverBody>
+          </Popover>
           <Button
-            disabled={!(this.state.date && this.state.weight)}
+            id="Popover1"
+            disabled={
+              !(
+                this.state.date &&
+                this.state.weight &&
+                this.state.steps &&
+                this.state.activity
+              )
+            }
             onClick={this.onSubmit}
+            label="Info"
+            className="p-button-info"
           >
             Edit
           </Button>
-          <br />
-          <p>
-            <Link to="/">← Back to Home</Link>
-          </p>
+          <Link style={{ marginLeft: 100 }} to="/">
+            ← Back to Home
+          </Link>
         </Form>
       </div>
     );

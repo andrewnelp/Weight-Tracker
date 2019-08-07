@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import "react-datepicker/dist/react-datepicker.css";
+import { Messages } from "primereact/messages";
 
 export default class CreateData extends React.Component {
   state = {
@@ -61,6 +62,13 @@ export default class CreateData extends React.Component {
   onChangeDate = date => {
     this.setState({
       date: date
+    });
+  };
+  showSuccess = () => {
+    this.messages.show({
+      severity: "success",
+      summary: "Success!",
+      detail: "Day Stats Added!"
     });
   };
 
@@ -172,22 +180,28 @@ export default class CreateData extends React.Component {
               onChange={this.handleInputChange}
             />
           </FormGroup>
-
-          {/* <Rating
-            value={this.state.value}
-            onChange={this.onChangeFeel}
-            stars={5}
-          /> */}
+          <Messages ref={el => (this.messages = el)} />
           <Button
             disabled={!(this.state.date && this.state.weight)}
             onClick={this.onSubmit}
+            // onClick={this.showSuccess}
+            // label="Success"
+            // className="p-button-success"
           >
-            Submit
+            Add Data!
           </Button>
-          <br />
-          <p>
-            <Link to="/">← Back to Home</Link>
-          </p>
+          <Link style={{ marginLeft: 100 }} to="/">
+            ← Back to Home
+          </Link>
+
+          {/* <Button
+            onClick={this.showSuccess}
+            label="Success"
+            className="p-button-success"
+          >
+            {" "}
+            Hello{" "}
+          </Button> */}
         </Form>
       </div>
     );
