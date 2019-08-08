@@ -49,7 +49,7 @@ export default class CreateData extends React.Component {
     };
     console.log(dayData);
     let regex = /^[a-zA-Z]+$/;
-    if (this.state.weight.length <= 2 || this.state.weight.match(regex)) {
+    if (this.state.weight.length < 3 || this.state.weight.match(regex)) {
       alert("Enter Your Weight Correctly in Numbers");
     } else if (this.state.steps.length < 4 || this.state.steps.match(regex)) {
       alert("Steps should be more than 4 digits and in numbers");

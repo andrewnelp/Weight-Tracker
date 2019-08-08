@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../App.css";
 import CardUp from "../CardUp";
+import CardWeather from "../CardWeather";
 import { Progress, Button } from "reactstrap";
 import { Panel } from "../Panel";
 import axios from "axios";
@@ -35,7 +36,7 @@ const Day = props => (
     </td>
   </tr>
 );
-
+const API_KEY = "d628cd992692acc57119e8ad46fcfa18";
 class List extends Component {
   constructor(props) {
     super(props);
@@ -49,9 +50,32 @@ class List extends Component {
       steps: [],
       fasting: [],
       feel: [],
-      chartData: {}
+      chartData: {},
+      temperature: undefined,
+      humidity: undefined,
+      description: undefined,
+      wind: undefined,
+      city: undefined,
+      error: undefined
     };
   }
+
+  getWeather = async () => {
+    const api_call = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=miami,usa&appid=${API_KEY}&units=imperial`
+    );
+    const data = await api_call.json();
+    console.log(data);
+    this.setState({
+      temperature: data.main.temp,
+      city: data.name,
+      country: data.sys.country,
+      humidity: data.main.humidity,
+      description: data.weather[0].description,
+      wind: data.wind.speed
+    });
+  };
+
   componentWillMount = () => {
     this.getChartData();
   };
@@ -139,6 +163,7 @@ class List extends Component {
   componentDidMount() {
     this.getJoke();
     this.loadData();
+    this.getWeather();
   }
 
   deleteData(id) {
@@ -210,6 +235,16 @@ class List extends Component {
                   value={5}
                 />
               </div>
+              {/* <div className="col-3">
+                <CardWeather
+                  temperature={this.state.temperature}
+                  humidity={this.state.humidity}
+                  description={this.state.description}
+                  wind={this.state.wind}
+                  // feel="Amazing"
+                  value={5}
+                />
+              </div> */}
             </div>
             <br />
             <div className="row justify-content-center">
@@ -237,7 +272,19 @@ class List extends Component {
                 >
                   {Math.round((this.state.fasting / 16) * 100)}%
                 </Progress>
+
                 <br />
+              </div>
+              <div className="col-3">
+                <CardWeather
+                  city={this.state.city}
+                  temperature={this.state.temperature}
+                  humidity={this.state.humidity}
+                  description={this.state.description}
+                  wind={this.state.wind}
+                  // feel="Amazing"
+                  value={5}
+                />
               </div>
             </div>
           </Panel>
@@ -258,29 +305,26 @@ class List extends Component {
             style={{ marginTop: "2em" }}
             toggleable={true}
           >
-            {/* <div className="row justify-content-center"> */}
-            <div>
-              <table className="table shadow-lg p-3 mb-5 bg-white rounded mt-3">
-                <thead
-                  className="thead-info"
-                  // style={{ backgroundColor: "light-gray" }}
-                >
-                  <tr>
-                    <th>Date</th>
-                    <th>Weight</th>
-                    <th>Steps</th>
-                    <th>Activity</th>
-                    <th>Duration</th>
-                    <th>Feel</th>
-                    <th>Fasting Time</th>
-                    <th>Diet Type</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>{this.dayDataList()}</tbody>
-              </table>
+            <div className="row justify-content-center">
+              <div className="col-11">
+                <table className="table shadow-lg p-3 mb-5 bg-white rounded mt-3">
+                  <thead className="thead-info">
+                    <tr>
+                      <th>Date</th>
+                      <th>Weight</th>
+                      <th>Steps</th>
+                      <th>Activity</th>
+                      <th>Duration</th>
+                      <th>Feel</th>
+                      <th>Fasting Time</th>
+                      <th>Diet Type</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>{this.dayDataList()}</tbody>
+                </table>
+              </div>
             </div>
-            {/* </div> */}
           </Panel>
           <Panel
             header="Charts"
@@ -288,11 +332,7 @@ class List extends Component {
             toggleable={true}
             className="mb-5"
           >
-            <Chart
-              chartData={this.state.chartData}
-              location="Massachusetts"
-              legendPosition="bottom"
-            />
+            <Chart chartData={this.state.chartData} legendPosition="bottom" />
           </Panel>
         </div>
       </div>
