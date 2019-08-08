@@ -95,7 +95,7 @@ export default class CreateData extends React.Component {
   render() {
     return (
       <div className="container" style={{ maxWidth: 900 }}>
-        <h3>Enter Your Day Data</h3>
+        <h3 className="fun">Enter Your Day Data</h3>
         <Form onSubmit={this.onSubmit} className="mb-5">
           <FormGroup>
             <label>Date: </label>
@@ -210,6 +210,7 @@ export default class CreateData extends React.Component {
             <PopoverBody>Enjoy!</PopoverBody>
           </Popover>
           <Button
+            className="fun"
             id="Popover1"
             disabled={!this.state.weight}
             onClick={this.onSubmit}

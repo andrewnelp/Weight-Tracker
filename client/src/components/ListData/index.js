@@ -9,6 +9,7 @@ import { Progress, Button } from "reactstrap";
 import { Panel } from "../Panel";
 import axios from "axios";
 import Chart from "../Chart";
+// import AnimSpring from "../";
 
 const Day = props => (
   <tr>
@@ -36,7 +37,9 @@ const Day = props => (
     </td>
   </tr>
 );
+
 const API_KEY = "d628cd992692acc57119e8ad46fcfa18";
+
 class List extends Component {
   constructor(props) {
     super(props);

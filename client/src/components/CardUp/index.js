@@ -12,7 +12,7 @@ export default class CardUp extends Component {
     return (
       <div>
         <Card className="Card mt-2 shadow-lg p-3 mb-5 bg-white rounded">
-          <CardBody>
+          <CardBody style={{ backgroundColor: "rgb(233,236,239)" }}>
             <CardTitle style={{ fontSize: 24 }}>
               <strong>{this.props.title}</strong>
               <hr />
