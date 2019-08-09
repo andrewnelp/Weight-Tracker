@@ -9,7 +9,6 @@ import { Progress, Button } from "reactstrap";
 import { Panel } from "../Panel";
 import axios from "axios";
 import Chart from "../Chart";
-// import AnimSpring from "../";
 
 const Day = props => (
   <tr>
@@ -99,20 +98,37 @@ class List extends Component {
           dateArr.unshift(w.date.substring(0, 10));
         });
       })
-      .catch(err => console.log(err));
-    this.setState({
-      chartData: {
-        labels: dateArr,
-        datasets: [
-          {
-            label: "Weight",
-            data: weightArr,
-            backgroundColor: ["rgb(23,162,184)"],
-            borderWidth: 2
+      .then(() => {
+        console.log("chartData");
+        this.setState({
+          chartData: {
+            labels: dateArr,
+            datasets: [
+              {
+                label: "Weight",
+                data: weightArr,
+                backgroundColor: ["rgb(23,162,184)"],
+                borderWidth: 2
+              }
+            ]
           }
-        ]
-      }
-    });
+        });
+        console.log("chartData2");
+      })
+      .catch(err => console.log(err));
+    // this.setState({
+    //   chartData: {
+    //     labels: dateArr,
+    //     datasets: [
+    //       {
+    //         label: "Weight",
+    //         data: weightArr,
+    //         backgroundColor: ["rgb(23,162,184)"],
+    //         borderWidth: 2
+    //       }
+    //     ]
+    //   }
+    // });
   }
 
   getJoke() {

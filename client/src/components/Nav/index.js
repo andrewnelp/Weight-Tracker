@@ -8,7 +8,7 @@ export default class Nav extends Component {
     return (
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
         <Link to="/" className="navbar-brand">
-          Weight Tracker
+          <strong>Weight Tracker</strong>
         </Link>
         <div className="collpase navbar-collapse">
           <ul className="navbar-nav mr-auto">

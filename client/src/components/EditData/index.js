@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../../utilsAPi/API";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Button,
   Form,
@@ -13,7 +14,6 @@ import {
   PopoverHeader,
   PopoverBody
 } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class CreateData extends React.Component {
   state = {
@@ -49,7 +49,6 @@ export default class CreateData extends React.Component {
           fasting: response.data.fasting,
           diet: response.data.diet
         });
-        console.log(response.data);
       })
       .catch(function(error) {
         console.log(error);
@@ -226,7 +225,7 @@ export default class CreateData extends React.Component {
             }
             onClick={this.onSubmit}
             label="Info"
-            className="p-button-info"
+            // className="p-button-info"
           >
             Edit
           </Button>

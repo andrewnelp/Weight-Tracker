@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { withRouter } from "react-router";
 import app from "../base.js";
 import "../App.css";
+import Jumbotron from "../components/Jumbotron";
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
@@ -22,6 +23,9 @@ const SignUp = ({ history }) => {
 
   return (
     <div className="Signup container text-center m-5">
+      <Jumbotron>
+        <h2>Write, Think, Trust Yourself</h2>
+      </Jumbotron>
       <h1 className=" mt-5 pt-5">Sign Up</h1>
       <form className="" onSubmit={handleSignUp}>
         <label>

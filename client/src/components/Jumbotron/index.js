@@ -8,7 +8,10 @@ function Jumbotron({ children }) {
         height: 200,
         clear: "both",
         paddingTop: 80,
-        textAlign: "center"
+        textAlign: "center",
+        backgroundImage: "url(https://unsplash.it/600)",
+        color: "white",
+        backgroundSize: "cover"
       }}
       className="jumbotron"
     >
