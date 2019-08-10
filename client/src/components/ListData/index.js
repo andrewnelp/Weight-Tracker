@@ -113,22 +113,8 @@ class List extends Component {
             ]
           }
         });
-        console.log("chartData2");
       })
       .catch(err => console.log(err));
-    // this.setState({
-    //   chartData: {
-    //     labels: dateArr,
-    //     datasets: [
-    //       {
-    //         label: "Weight",
-    //         data: weightArr,
-    //         backgroundColor: ["rgb(23,162,184)"],
-    //         borderWidth: 2
-    //       }
-    //     ]
-    //   }
-    // });
   }
 
   getJoke() {
