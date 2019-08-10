@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import app from "../base.js";
 import "../App.css";
@@ -48,6 +49,9 @@ const SignUp = ({ history }) => {
         </label>
         <button type="submit">Sign Up</button>
       </form>
+      <Link style={{ marginLeft: 100 }} to="/login">
+        ← Login
+      </Link>
     </div>
   );
 };

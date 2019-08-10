@@ -1,4 +1,5 @@
 import React, { useCallback, useContext } from "react";
+import { Link } from "react-router-dom";
 import { withRouter, Redirect } from "react-router";
 import app from "../base.js";
 import { AuthContext } from "../Auth.js";
@@ -54,6 +55,9 @@ const Login = ({ history }) => {
           />
         </label>
         <button type="submit">Log in</button>
+        <Link style={{ marginLeft: 100 }} to="/signup">
+          ← Sign Up
+        </Link>
       </form>
     </div>
   );
