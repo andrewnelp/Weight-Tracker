@@ -124,7 +124,9 @@ class List extends Component {
       )
       .then(response => {
         this.setState({ joke: response.data.joke });
+        console.log(response.data.joke);
       })
+
       .catch(error => {
         console.log(error);
       });

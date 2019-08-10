@@ -29,3 +29,8 @@ Enter your new day data, edit it and enjoy the results!
 - Reactstrap
 - PrimeReact
 - Chart.js
+
+#### Used APIs:
+
+- [Open Weather Map](https://openweathermap.org/api)
+- [Joke Api](https://sv443.net/jokeapi)
