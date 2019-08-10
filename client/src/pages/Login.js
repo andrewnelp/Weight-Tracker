@@ -34,7 +34,7 @@ const Login = ({ history }) => {
       <Jumbotron>
         <h2>Write, Think, Trust Yourself</h2>
       </Jumbotron>
-      <h1 className=" mt-5 pt-5">Log in</h1>
+      <h1 className=" mt-5 pt-5">Login</h1>
       <form onSubmit={handleLogin}>
         <label className="Email m-5">
           Email:
