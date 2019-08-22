@@ -33,7 +33,7 @@ export default class CardUp extends Component {
               Fasting: {this.props.fasting}
             </CardSubtitle>
             <CardSubtitle style={{ fontSize: 20, color: this.props.colorFeel }}>
-              Feel:{this.props.feel}
+              Feel: {this.props.feel}
             </CardSubtitle>
             <CardSubtitle style={{ fontSize: 22 }}>
               <Rating

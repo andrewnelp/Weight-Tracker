@@ -69,7 +69,7 @@ class List extends Component {
     const data = await api_call.json();
     console.log(data);
     this.setState({
-      temperature: data.main.temp,
+      temperature: Math.round(data.main.temp),
       city: data.name,
       country: data.sys.country,
       humidity: data.main.humidity,
@@ -192,11 +192,7 @@ class List extends Component {
     return (
       <div className="Home">
         <div className="container">
-          <Panel
-            header="Activities and Goals"
-            // style={{ marginTop: "1em" }}
-            toggleable={true}
-          >
+          <Panel header="Activities and Goals" toggleable={true}>
             <div className="row justify-content-around">
               <div className="col-3">
                 <CardUp
@@ -240,16 +236,6 @@ class List extends Component {
                   value={5}
                 />
               </div>
-              {/* <div className="col-3">
-                <CardWeather
-                  temperature={this.state.temperature}
-                  humidity={this.state.humidity}
-                  description={this.state.description}
-                  wind={this.state.wind}
-                  // feel="Amazing"
-                  value={5}
-                />
-              </div> */}
             </div>
             <br />
             <div className="row justify-content-center">
@@ -287,7 +273,6 @@ class List extends Component {
                   humidity={this.state.humidity}
                   description={this.state.description}
                   wind={this.state.wind}
-                  // feel="Amazing"
                   value={5}
                 />
               </div>

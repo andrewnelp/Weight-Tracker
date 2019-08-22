@@ -27,7 +27,7 @@ export default class CardWeather extends Component {
               {this.props.description}
             </CardSubtitle>
             <CardSubtitle style={{ fontSize: 20 }}>
-              Wind:{this.props.wind}
+              Wind: {this.props.wind}
             </CardSubtitle>
             <CardSubtitle style={{ fontSize: 22 }}>
               <Rating
