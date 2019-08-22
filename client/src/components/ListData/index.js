@@ -64,7 +64,7 @@ class List extends Component {
 
   getWeather = async () => {
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=miami,usa&appid=${API_KEY}&units=imperial`
+      `https://api.openweathermap.org/data/2.5/weather?q=miami,usa&appid=${API_KEY}&units=imperial`
     );
     const data = await api_call.json();
     console.log(data);
@@ -124,9 +124,7 @@ class List extends Component {
       )
       .then(response => {
         this.setState({ joke: response.data.joke });
-        console.log(response.data.joke);
       })
-
       .catch(error => {
         console.log(error);
       });
